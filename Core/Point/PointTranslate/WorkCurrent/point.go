@@ -1,10 +1,5 @@
 package main
 
-/*
-import (
-	"fmt"
-)
-
 // Point is a basic point. Although simple, the member variables are kept
 // private to ensure that Point remains immutable.
 type Point struct {
@@ -40,10 +35,6 @@ func (pt *Point) ToSGF() string {
 	sgfY := string(rune((pt.Y()) + aValue))
 	// two lower case letters
 	return sgfX + sgfY
-	// return SGF{
-	// 	x: sgfX,
-	// 	y: sgfY,
-	// }
 }
 
 // 3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
@@ -54,37 +45,3 @@ func NewFromSGF(sgfPt string) *Point {
 	y := int64(sgfY) - aValue
 	return New(int64(x), int64(y))
 }
-
-// Attempt to also make this a method on the point object
-/*3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
-func (sgfPt string) NewFromSGF() *Point {
-	sgfX := sgfPt[0]
-	sgfY := sgfPt[1]
-	x := int64(sgfX) - aValue
-	y := int64(sgfY) - aValue
-	return New(int64(x), int64(y))
-}
-*/
-
-/*
-// For Testing the above translation methods
-func main() {
-
-	fmt.Println()
-	fmt.Println("[*** pointV03 Point Translation Tests ***]")
-
-	intPnt01 := New(8, 15)
-	fmt.Println()
-	fmt.Println("intPnt01: ", intPnt01)
-
-	// This test the ToSGF method, which is a method on the Point object
-	SGFPnt01 := intPnt01.ToSGF()
-	fmt.Println()
-	fmt.Println("SGFPnt01: ", SGFPnt01)
-
-	intPnt02 := NewFromSGF(SGFPnt01)
-	fmt.Println()
-	fmt.Println("intPnt02: ", intPnt02)
-
-}
-*/
