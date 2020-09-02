@@ -7,11 +7,6 @@ type Point struct {
 	y int64
 }
 
-type SGF struct {
-	x string
-	y string
-}
-
 const aValue = int64('a')
 
 // New creates a new immutable Point.
