@@ -11,17 +11,17 @@ package main
 func main() {
 	fmt.Println()
 	fmt.Println("pointTranslateINTSGF: ")
-	
+
 	p01 := Point{
 		x: 7,
 		y: 19,
 	}
-	
+
 	// New Immutable int *Point p02
 	p02Int := New(p01.X(), p01.Y())
 	fmt.Println()
 	fmt.Println("Imm p02Int: ", p02Int)
-	
+
 	// New Immutable int *Point p03
 	p03Int := Point{
 		x: 7,
@@ -29,29 +29,29 @@ func main() {
 	}
 	fmt.Println()
 	fmt.Println("Reg p03Int: ", p03Int)
-	
+
 	// INT TO SGF
 	// p02Sgf point from p02 int *Point
 	p02Sgf := translateToSGFPt01(p02Int)
 	fmt.Println()
 	fmt.Println("SGF p02Sgf: ", p02Sgf)
-	
+
 	// p02Sgf point from p02 int Point
 	p03Sgf := translateToSGFPt02(p03Int)
 	fmt.Println()
 	fmt.Println("SGF p03Sgf: ", p03Sgf)
-	
+
 	// SGF TO INT
 	// p03int point from p02Sgf point
-	p04Int := translateToINTPt01(p02Sgf)
+	p04Int := NewFromSGF(p02Sgf)
 	fmt.Println()
 	fmt.Println("INT p04Int: ", p04Int)
-	
+
 	// p03int point from p02Sgf point
-	p05Int := translateToINTPt01(p03Sgf)
+	p05Int := NewFromSGF(p03Sgf)
 	fmt.Println()
 	fmt.Println("INT p05Int: ", p05Int)
-	
+
 }
 
 // Package point is a basic package for points.
@@ -110,7 +110,7 @@ func translateToSGFPt02(pt Point) string {
 }
 
 // 3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
-func translateToINTPt01(sgfPt string) *Point {
+func NewFromSGF(sgfPt string) *Point {
 	sgfPtX := sgfPt[0]
 	sgfPtY := sgfPt[1]
 	x := int(sgfPtX) - 97

@@ -52,7 +52,7 @@ func translateToSGFPt02(pt Point) string {
 }
 
 // 3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
-func translateToINTPt01(sgfPt string) *Point {
+func NewFromSGF(sgfPt string) *Point {
 	sgfPtX := sgfPt[0]
 	sgfPtY := sgfPt[1]
 	x := int(sgfPtX) - 97
