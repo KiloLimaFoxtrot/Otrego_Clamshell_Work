@@ -10,10 +10,10 @@ import (
 // New(13, 5), nf
 
 func TestTranslate(t *testing.T) {
-	
+
 	fmt.Println()
 	fmt.Println("[*** Go Game Point Translation Tests ***]")
-	
+
 	// Test Point Struct
 	type PointStrct struct {
 		x int64
@@ -37,7 +37,7 @@ func TestTranslate(t *testing.T) {
 		x: Pnt01.x,
 		y: Pnt01.y,
 	}
-	
+
 	// *** To Test/Verify *Point creation for below tests
 	if PntTest01 != PntCrct01 {
 		fmt.Println()
@@ -47,16 +47,15 @@ func TestTranslate(t *testing.T) {
 	} else {
 		fmt.Println("Point creation PASS. ")
 	}
-	
+
 	// *** To Test ToSGF method
 	// Test SGF
 	SGF01 := Pnt01.ToSGF()
 	// Test control SGF, as a string "xy", carrying above *Point values
-	SGFCrct01 = string(rune((PntCrct01.x)+aValue)) + string(rune((
-		PntCrct01.y)+aValue))
+	SGFCrct01 = string(rune((PntCrct01.x)+aValue)) + string(rune((PntCrct01.y)+aValue))
 	// To interject a different value, comment out the above
 	/*SGFCrct01 = "ju"*/
-	
+
 	if SGF01 != SGFCrct01 {
 		fmt.Println()
 		t.Errorf("To SGF translation fail.\n"+
@@ -65,7 +64,7 @@ func TestTranslate(t *testing.T) {
 	} else {
 		fmt.Println("To SGF translation PASS. ")
 	}
-	
+
 	// *** To Test *Point method, carrying above values
 	// Test *Point
 	Pnt02 := NewFromSGF(SGF01)
@@ -79,7 +78,7 @@ func TestTranslate(t *testing.T) {
 		x: Pnt02.x,
 		y: Pnt02.y,
 	}
-	
+
 	if PntTest02 != PntCrct01 {
 		fmt.Println()
 		t.Errorf("To Point translation fail.\n"+
@@ -89,4 +88,3 @@ func TestTranslate(t *testing.T) {
 		fmt.Println("To Point translation PASS. ")
 	}
 }
-

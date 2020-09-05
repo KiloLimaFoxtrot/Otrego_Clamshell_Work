@@ -34,9 +34,12 @@ func (pt *Point) ToSGF() string {
 
 // 3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
 func NewFromSGF(sgfPt string) *Point {
-	sgfX := sgfPt[0]
-	sgfY := sgfPt[1]
-	x := int64(sgfX) - aValue
-	y := int64(sgfY) - aValue
+	// sgfX := sgfPt[0]
+	// sgfY := sgfPt[1]
+	// x := int64(sgfX) - aValue
+	// y := int64(sgfY) - aValue
+	x := int64(sgfPt[0]) - aValue
+	y := int64(sgfPt[1]) - aValue
+
 	return New(int64(x), int64(y))
 }
