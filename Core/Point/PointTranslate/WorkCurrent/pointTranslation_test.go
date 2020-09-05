@@ -14,18 +14,18 @@ func TestTranslate(t *testing.T) {
 	fmt.Println()
 	fmt.Println("[*** Go Game Point Translation Tests ***]")
 
-	// Test Point Struct
+	// Create Point Struct for testing
 	type PointStrct struct {
 		x int64
 		y int64
 	}
-	// Test SGF Point
 	var SGFCrct01 string
-	// Constant value to convert ascii to letter and int
-	const aValue = int64('a')
-	// Test *Point
+
+	const aValue = int64('a') // Constant value to convert ascii to letter and int
 	var x1 int64 = 8
 	var y1 int64 = 20
+
+	// Test *Point
 	Pnt01 := New(x1, y1)
 	// Test Control Point, is non-pointer type so can locally verify
 	PntCrct01 := PointStrct{
@@ -38,7 +38,7 @@ func TestTranslate(t *testing.T) {
 		y: Pnt01.y,
 	}
 
-	// *** To Test/Verify *Point creation for below tests
+	// *** To Test/Verify *Point creation
 	if PntTest01 != PntCrct01 {
 		fmt.Println()
 		t.Errorf("Point creation fail.\n"+
