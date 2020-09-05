@@ -23,23 +23,21 @@ func (p *Point) X() int64 { return p.x }
 // Y returns the y-value.
 func (p *Point) Y() int64 { return p.y }
 
-// Two Go-game board position/point translation methods
-// 1. '*Point' immutable int point, to SGF(String of two letters) point
+// ERROR HANDLING!!
+// https://github.com/otrego/clamshell/pull/79#discussion_r482200824
+
+// ToSGF() converts a pointer-type (immutable) *Point
+// to an SGF Point (two letter string). The returned value is 0-indexed.
 func (pt *Point) ToSGF() string {
 	sgfX := string(rune((pt.X()) + aValue))
 	sgfY := string(rune((pt.Y()) + aValue))
-	// two lower case letters
 	return sgfX + sgfY
 }
 
-// 3. 'p' SGF(two letter string) Point, to '*Point' immutable Int Point
+// NewFromSGF converts an SGF point (
+// two letter string, 0-indexed) to a pointer-type (immutable) *Point.
 func NewFromSGF(sgfPt string) *Point {
-	// sgfX := sgfPt[0]
-	// sgfY := sgfPt[1]
-	// x := int64(sgfX) - aValue
-	// y := int64(sgfY) - aValue
 	x := int64(sgfPt[0]) - aValue
 	y := int64(sgfPt[1]) - aValue
-
 	return New(int64(x), int64(y))
 }
