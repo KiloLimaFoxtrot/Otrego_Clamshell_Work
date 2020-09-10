@@ -9,6 +9,45 @@ import (
 // New(8, 20), SGF string "iu"
 // New(13, 5), nf
 
+/*
+// Notes from Discord texting with Josh 7 September 2020,
+about the translation point test I am building for Otrego
+[... missing notes from Discord chat with Josh]
+4 Types of tests
+1. PntPrefernc01 != PtToTest01
+2. TestConverSGFToPoint
+3. TestConvertPointToSGF
+4. TestRoundTripConvert
+
+Considerations
+1. Have a single test method test a thing
+2. Don't compare structs, compare fields
+e.g. below
+a.x == b.x
+a.y == b.y
+
+or
+[Create an equals method, that returns a bool value]
+func (p *Point) Equals(pt *Point) bool {
+  return p.x == pt.x && p.y == pt.y
+}
+
+probably easier to do [test field values like above]
+a.x == b.x
+a.y == b.y
+[Instead of the struct comparison]
+if PntTest01 != PntCrct01 {
+        fmt.Println()
+        t.Errorf("Point creation fail.\n"+
+            "got: %v \n"+
+            "want: %v \n", Pnt01, PntCrct01)
+    } else {
+        fmt.Println("Point creation PASS. ")
+    }
+you won't need the PASS
+
+*/
+
 func TestTranslate(t *testing.T) {
 	
 	fmt.Println("[*** Go Game Point Translation Tests ***]")
