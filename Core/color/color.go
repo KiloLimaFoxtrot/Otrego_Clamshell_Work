@@ -21,5 +21,7 @@ func (c Color) Opposite() Color {
 	} else if c == White {
 		return Black
 	}
+	//fmt.Println()
+	//fmt.Println("Test printout for github linkup")
 	return c
 }
