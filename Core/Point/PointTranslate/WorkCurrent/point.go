@@ -23,8 +23,12 @@ func (p *Point) X() int64 { return p.x }
 // Y returns the y-value.
 func (p *Point) Y() int64 { return p.y }
 
-// ERROR HANDLING!!
-// https://github.com/otrego/clamshell/pull/79#discussion_r482200824
+// ToDo:
+// 1. Rewrite the below translation methods to work with a slice
+// /array of lower and then upper case of the alphabet,
+// which will work as a translation dictionary/mapping from the int
+// point value (slice index value) to the SGF point value (
+// either a lower or uppercase letter)
 
 // ToSGF() converts a pointer-type (immutable) *Point
 // to an SGF Point (two letter string). The returned value is 0-indexed.
