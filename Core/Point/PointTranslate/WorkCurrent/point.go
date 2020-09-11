@@ -1,5 +1,12 @@
 package main
 
+// ToDo:
+// 1. Rewrite the below translation methods to work with a slice
+// /array of lower and then upper case of the alphabet,
+// which will work as a translation dictionary/mapping from the int
+// point value (slice index value) to the SGF point value (
+// either a lower or uppercase letter)
+
 // Point is a basic point. Although simple, the member variables are kept
 // private to ensure that Point remains immutable.
 type Point struct {
@@ -22,13 +29,6 @@ func (p *Point) X() int64 { return p.x }
 
 // Y returns the y-value.
 func (p *Point) Y() int64 { return p.y }
-
-// ToDo:
-// 1. Rewrite the below translation methods to work with a slice
-// /array of lower and then upper case of the alphabet,
-// which will work as a translation dictionary/mapping from the int
-// point value (slice index value) to the SGF point value (
-// either a lower or uppercase letter)
 
 // ToSGF() converts a pointer-type (immutable) *Point
 // to an SGF Point (two letter string). The returned value is 0-indexed.
