@@ -1,6 +1,8 @@
 // Package color contains utilities related to player and stone color.
 package color
 
+import "fmt"
+
 // Color is typed string indicating player or stone color
 type Color string
 
