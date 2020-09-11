@@ -7,6 +7,8 @@ package main
 // point value (slice index value) to the SGF point value (
 // either a lower or uppercase letter)
 
+// Slice Array with upper and lower case alphabet
+
 // Point is a basic point. Although simple, the member variables are kept
 // private to ensure that Point remains immutable.
 type Point struct {
