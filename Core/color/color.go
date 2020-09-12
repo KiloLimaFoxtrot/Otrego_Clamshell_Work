@@ -24,6 +24,7 @@ func (c Color) Opposite() Color {
 		return Black
 	}
 	fmt.Println()
-	fmt.Println("Test printout edit after restart 02 for github linkup")
+	fmt.Println("Test printout edit after restart 05? for github" +
+		" linkup")
 	return c
 }
