@@ -11,14 +11,13 @@ type Point struct {
 	y int64
 }
 
-// PointSGFSlce is a slice/Array that serves as the translation key
-// between integer-Point (index position) and string SGF-Point (
-// byte/char) values at the index position
+// PointSGFSlce is a slice/Array translation reference between integer
+// -Point (index position) and string SGF-Point (byte/char) values
 var PointSGFSlce = []byte{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 	'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
 	'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
 	'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-	'V', 'W', 'X', 'Y', 'Z'}
+	'V', 'W', 'X', 'Y', 'Z', 'x', 'y', 'z'}
 
 // New creates a new immutable Point.
 func New(x, y int64) *Point {
@@ -37,29 +36,35 @@ func (p *Point) Y() int64 { return p.y }
 // ToSGF() converts a pointer-type (immutable) *Point
 // to an SGF Point (two letter string). The returned value is 0-indexed.
 func (pt *Point) ToSGF() string {
-	sgfX := string(PointSGFSlce[pt.X()])
-	sgfY := string(PointSGFSlce[pt.Y()])
-
-	return sgfX + sgfY
+	if (pt != nil) && (pt.X() <= 51) && (pt.Y() <= 51) {
+		sgfX := string(PointSGFSlce[pt.X()])
+		sgfY := string(PointSGFSlce[pt.Y()])
+		return sgfX + sgfY
+	} else {
+		panic("Error: *Point entries must not be nil for either" +
+			" x y entries and have 0 <= x, y <= 51 values. ")
+	}
 }
 
 // NewFromSGF converts an SGF point (
 // two letter string, 0-indexed) to a pointer-type (immutable) *Point.
 func NewFromSGF(sgfPt string) *Point {
-	// x := string(sgfPt[0])
-	// y := string(sgfPt[1])
-	// xIndx := bytes.Index(PointSGFSlce, []byte(x))
-	// yIndx := bytes.Index(PointSGFSlce, []byte(y))
-	// condensed below
-	xIndx := bytes.Index(PointSGFSlce, []byte(string(sgfPt[0])))
-	yIndx := bytes.Index(PointSGFSlce, []byte(string(sgfPt[1])))
+	if (sgfPt != "") && (len(sgfPt) == 2) {
+		xIndx := bytes.Index(PointSGFSlce, []byte(string(sgfPt[0])))
+		yIndx := bytes.Index(PointSGFSlce, []byte(string(sgfPt[1])))
 
-	// x := int64(sgfPt[0]) - aValue
-	// y := int64(sgfPt[1]) - aValue
-	return New(int64(xIndx), int64(yIndx))
+		// x := int64(sgfPt[0]) - aValue
+		// y := int64(sgfPt[1]) - aValue
+		return New(int64(xIndx), int64(yIndx))
+	} else {
+		panic("Error: SGF string entries must not be empty and must" +
+			" be of length = 2 byte/byte.  ")
+		// return New(99, 99)
+	}
+
 }
 
-// // Testing functions for this build ??
+// Testing functions for this build ??
 // func main() {
 // 	fmt.Println()
 // 	fmt.Println("*** Point Build v01: ")
@@ -80,7 +85,7 @@ func NewFromSGF(sgfPt string) *Point {
 // 	fmt.Println()
 // 	fmt.Println("Sample test run 01: ")
 // 	// 1.
-// 	pnt01 := New(8, 20) // SGF string "iu"
+// 	pnt01 := New(36, 51) // SGF string "iu"
 // 	fmt.Println("pnt01: ", pnt01)
 // 	// 2.
 // 	sgf01 := pnt01.ToSGF()
@@ -93,7 +98,7 @@ func NewFromSGF(sgfPt string) *Point {
 // 	fmt.Println()
 // 	fmt.Println("Sample test run 02: ")
 // 	// 1.
-// 	pnt03 := New(8, 32) // SGF string "iu"
+// 	pnt03 := New(8, 47) // SGF string "iu"
 // 	fmt.Println("pnt03: ", pnt03)
 // 	// 2.
 // 	sgf02 := pnt03.ToSGF()
