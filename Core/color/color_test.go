@@ -40,9 +40,9 @@ func TestOpposite(t *testing.T) {
 			}
 		})
 	}
-	
+
 	// Original version of the above test commands..
-	
+
 	// for _, tc := range testCases {
 	// 	t.Run(tc.desc, func(t *testing.T) {
 	// 		out := Color(tc.in).Opposite()
