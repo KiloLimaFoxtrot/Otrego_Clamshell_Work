@@ -58,7 +58,7 @@ package main
 // 	var y1 int64 = 20         // User chosen y values for testing
 // 	const aValue = int64('a') // Ascii int string conversion value
 //
-// 	// ** Create test pointer-type *Point with point.go New() method
+// 	// ** Create test pointer-type *Point with pointV06.go New() method
 // 	Pnt01 := New(x1, y1)
 // 	// Create non-pointer-type copy of Pnt01,
 // 	// and a test reference copy, for this unit test
@@ -75,7 +75,7 @@ package main
 // 		y: Pnt01.y,
 // 	}
 //
-// 	// ** Create test SGF Point with point.go ToSGF() method
+// 	// ** Create test SGF Point with pointV06.go ToSGF() method
 // 	SGF01 := Pnt01.ToSGF()
 // 	// Create a test reference copy of SGF01, for this unit test
 // 	var SGFCrct01 string // string variable to hold SGF values

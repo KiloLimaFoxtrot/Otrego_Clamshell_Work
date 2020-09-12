@@ -7,7 +7,7 @@ import (
 
 // Sample correct results
 // New(8, 20), SGF string "iu"
-// New(13, 5), nf
+// New(13, 5), "nf"
 
 /*
 // Notes from Discord texting with Josh 7 September 2020,
@@ -49,15 +49,15 @@ you won't need the PASS
 */
 
 func TestTranslate(t *testing.T) {
-	
+
 	fmt.Println("[*** Go Game Point Translation Tests ***]")
-	
+
 	// *** Test 'Fields' *** //
 	var x1 int64 = 8          // User chosen x values for testing
 	var y1 int64 = 20         // User chosen y values for testing
 	const aValue = int64('a') // Ascii int string conversion value
-	
-	// ** Create test pointer-type *Point with point.go New() method
+
+	// ** Create test pointer-type *Point with pointV06.go New() method
 	Pnt01 := New(x1, y1)
 	// Create non-pointer-type copy of Pnt01,
 	// and a test reference copy, for this unit test
@@ -73,15 +73,15 @@ func TestTranslate(t *testing.T) {
 		x: Pnt01.x,
 		y: Pnt01.y,
 	}
-	
-	// ** Create test SGF Point with point.go ToSGF() method
+
+	// ** Create test SGF Point with pointV06.go ToSGF() method
 	SGF01 := Pnt01.ToSGF()
 	// Create a test reference copy of SGF01, for this unit test
 	var SGFCrct01 string // string variable to hold SGF values
 	SGFCrct01 = string(rune((PntToTest01.x)+aValue)) + string(rune((PntToTest01.y)+aValue))
 	// Interject different user values with below, and comment out above
 	// SGFCrct01 = "ju"
-	
+
 	// ** Create test *Point from SGF01, which should equal Pnt01
 	Pnt02 := NewFromSGF(SGF01)
 	// Create non-pointer-type copy of Pnt01, for this unit test.
@@ -95,9 +95,9 @@ func TestTranslate(t *testing.T) {
 	// 	x: 1,
 	// 	y: 24,
 	// }
-	
+
 	// *** Test Statements *** //
-	
+
 	// *** To Test Pnt01 creation, using non-pointer copies
 	if PntToTest01 != PntRefrnce01 {
 		fmt.Println()
@@ -107,7 +107,7 @@ func TestTranslate(t *testing.T) {
 	} else {
 		fmt.Println("Point creation PASS. ")
 	}
-	
+
 	// *** To Test SGF Point creation
 	if SGF01 != SGFCrct01 {
 		fmt.Println()
@@ -117,7 +117,7 @@ func TestTranslate(t *testing.T) {
 	} else {
 		fmt.Println("To SGF translation PASS. ")
 	}
-	
+
 	// *** To Test Pnt02 creation, using non-pointer copies
 	if PntTest02 != PntRefrnce01 {
 		fmt.Println()
