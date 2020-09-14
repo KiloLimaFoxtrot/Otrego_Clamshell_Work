@@ -7,7 +7,7 @@ package main
 // 	"testing"
 // )
 //
-// func TestPointSGFTranslation(t *testing.T) {
+// func TestPointToSGFTranslate(t *testing.T) {
 // 	type Point struct {
 // 		x int64
 // 		y int64

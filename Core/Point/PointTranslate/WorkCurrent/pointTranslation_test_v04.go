@@ -16,7 +16,7 @@ package main
 // //	fmt.Println("*** Point Translation 02 Test: ")
 // // }
 //
-// func TestPointSGFTranslation(t01 *testing.T) {
+// func TestPointToSGFTranslate(t01 *testing.T) {
 // 	type Point struct {
 // 		x int64
 // 		y int64

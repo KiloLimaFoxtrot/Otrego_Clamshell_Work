@@ -14,7 +14,7 @@ func TestCreate(t *testing.T) {
 	}
 }
 
-func TestPointSGFTranslation(t *testing.T) {
+func TestPointToSGFTranslate(t *testing.T) {
 	type Point struct {
 		x int64
 		y int64
@@ -61,16 +61,17 @@ func TestPointSGFTranslation(t *testing.T) {
 	}
 
 	for _, tc := range testToSGFCases {
-		t.Run(tc.desc, func(t01 *testing.T) {
+		t.Run(tc.desc, func(t *testing.T) {
 			toSGFOut := New(tc.in.x, tc.in.y).ToSGF()
-			if t01 == nil || toSGFOut != tc.want {
-				t01.Errorf("%q.ToSGF() = %q, but wanted %q", tc.in,
+			if t == nil || toSGFOut != tc.want {
+				t.Errorf("%q.ToSGF() = %q, but wanted %q", tc.in,
 					toSGFOut, tc.want)
 			}
 		})
 	}
+}
 
-	// Second test translation from SGF-string-point to integer-point
+func TestSGFToPointTranslate(t *testing.T) {
 	testToPointCases := []struct {
 		desc string
 		in   string
@@ -111,19 +112,22 @@ func TestPointSGFTranslation(t *testing.T) {
 	}
 
 	for _, tc := range testToPointCases {
-		t.Run(tc.desc, func(t01 *testing.T) {
+		t.Run(tc.desc, func(t *testing.T) {
 			toPointOut := NewFromSGF(tc.in)
 			// include the point.go *Point type X Y getters below
 			pointX := toPointOut.X()
 			pointY := toPointOut.Y()
-			if t01 == nil || pointX != tc.want.x {
-				t01.Errorf("%q.toPointOut.x = %q, but wanted %q", tc.in,
+			if t == nil || pointX != tc.want.x {
+				t.Errorf("%q.toPointOut.x = %q, but wanted %q", tc.in,
 					pointX, tc.want.x)
 			}
-			if t01 == nil || pointY != tc.want.y {
-				t01.Errorf("%q.toPointOut.y = %q, but wanted %q", tc.in,
+			if t == nil || pointY != tc.want.y {
+				t.Errorf("%q.toPointOut.y = %q, but wanted %q", tc.in,
 					pointY, tc.want.y)
 			}
 		})
 	}
+
 }
+
+// Second test translation from SGF-string-point to integer-point
