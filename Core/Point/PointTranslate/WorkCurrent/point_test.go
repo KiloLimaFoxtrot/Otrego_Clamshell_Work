@@ -124,5 +124,3 @@ func TestSGFToPointTranslate(t *testing.T) {
 	}
 
 }
-
-// Second test translation from SGF-string-point to integer-point
