@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 )
 
 // Point is a basic point. Although simple, the member variables are kept
@@ -64,7 +65,6 @@ func NewFromSGF(sgfPt string) *Point {
 
 }
 
-/*
 // Testing functions for this build ??
 func main() {
 	fmt.Println()
@@ -86,7 +86,7 @@ func TestPointSGFBuild() {
 	fmt.Println()
 	fmt.Println("Sample test run 01: ")
 	// 1.
-	pnt01 := New(36, 51) // SGF string "iu"
+	pnt01 := New(36, 50) // SGF string "iu"
 	fmt.Println("pnt01: ", pnt01)
 	// 2.
 	sgf01 := pnt01.ToSGF()
@@ -109,4 +109,3 @@ func TestPointSGFBuild() {
 	fmt.Println("pnt04: ", pnt04)
 
 }
-*/
