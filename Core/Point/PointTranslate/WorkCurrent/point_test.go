@@ -15,11 +15,6 @@ func TestCreate(t *testing.T) {
 }
 
 func TestPointToSGFTranslate(t *testing.T) {
-	type Point struct {
-		x int64
-		y int64
-	}
-
 	// First test translation from integer-point to SGF-string-point
 	testToSGFCases := []struct {
 		desc string
