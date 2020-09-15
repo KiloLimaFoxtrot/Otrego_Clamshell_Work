@@ -4,9 +4,6 @@ import (
 	"fmt"
 )
 
-// This version was submitted with pull request #84 as a revision 14
-// September 2020
-
 // Point is a basic point. Although simple, the member variables are kept
 // private to ensure that Point remains immutable.
 type Point struct {
