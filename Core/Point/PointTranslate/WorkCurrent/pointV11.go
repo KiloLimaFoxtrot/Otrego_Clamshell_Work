@@ -1,7 +1,9 @@
 package main
 
-// This version was submitted with pull request #84 as a revision 14
-// September 2020
+//
+// import (
+// 	"fmt"
+// )
 //
 // // Point is a basic point. Although simple, the member variables are kept
 // // private to ensure that Point remains immutable.
@@ -53,81 +55,94 @@ package main
 // // ToSGF converts a pointer-type (immutable) *Point
 // // to an SGF Point (two letter string).
 // // The returned value is 0-indexed.
-// func (pt *Point) ToSGF() string {
-// 	sgfOut := ""
+// func (pt *Point) ToSGF() (string, error) {
+// 	var sgfOut string
+// 	var err01 = fmt.Errorf("")
 // 	if (pt.X() <= 51) && (pt.Y() <= 51) {
 // 		sgfX := string(pointToSgfMap[pt.X()])
 // 		sgfY := string(pointToSgfMap[pt.Y()])
 // 		sgfOut = sgfX + sgfY
+// 		err01 = nil
 // 	} else {
-// 		sgfOut = "--"
+// 		sgfOut = ""
+// 		err01 = fmt.Errorf("*Point int64 x and y value entries must" +
+// 			" be greater than or equal to 0, " +
+// 			"and less than or equal to 51. ")
+// 		// err01 = errors.New("*Point x and y value entries must be" +
+// 		// 	" greater than or equal to 0, and less than or equal to 51")
 // 	}
-// 	return sgfOut
+// 	return sgfOut, err01
 // }
 //
 // // NewFromSGF converts an SGF point (two letter string)
 // // to a pointer-type (immutable) *Point.
-// func NewFromSGF(sgfPt string) *Point {
+// func NewFromSGF(sgfPt string) (*Point, error) {
 // 	var intX int64
 // 	var intY int64
+// 	var err02 = fmt.Errorf("")
 // 	if (sgfPt != "") && (sgfPt != "--") && (len(sgfPt) == 2) {
 // 		intX = sgfToPointRef[rune(sgfPt[0])]
 // 		intY = sgfToPointRef[rune(sgfPt[1])]
+// 		err02 = nil
 // 	} else {
 // 		intX = 99
 // 		intY = 99
+// 		err02 = fmt.Errorf("SGF string x and y value entries must non" +
+// 			"-empty and of length 2 (runes/chars). ")
 // 	}
-// 	return New(intX, intY)
+// 	return New(intX, intY), err02
 //
 // }
-
-/*
-// Testing functions for this build ??
-func main() {
-	fmt.Println()
-	fmt.Println("*** Point Build v01: ")
-
-	for pt, sgf := range pointToSgfMap {
-		fmt.Printf("pt: %v, sgf: %q\n", pt, sgf)
-	}
-
-	for sgf, pt := range sgfToPointRef {
-		fmt.Printf("sgf: %q, pt: %v\n", sgf, pt)
-	}
-
-	TestPointSGFBuild()
-
-}
-
-func TestPointSGFBuild() {
-	fmt.Println()
-	fmt.Println("TestPointSGFBuild() ")
-
-	// Sample test run 01
-	fmt.Println()
-	fmt.Println("Sample test run 01: ")
-	// 1.
-	pnt01 := New(36, 51) // SGF string "iu"
-	fmt.Println("pnt01: ", pnt01)
-	// 2.
-	sgf01 := pnt01.ToSGF()
-	fmt.Println("sgf01: ", sgf01)
-	// 3.
-	pnt02 := NewFromSGF(sgf01) // SGF string "iu"
-	fmt.Println("pnt02: ", pnt02)
-
-	// Sample test run 02
-	fmt.Println()
-	fmt.Println("Sample test run 02: ")
-	// 1.
-	pnt03 := New(36, 52) // SGF string "iu"
-	fmt.Println("pnt03: ", pnt03)
-	// 2.
-	sgf02 := pnt03.ToSGF()
-	fmt.Println("sgf02: ", sgf02)
-	// 3.
-	pnt04 := NewFromSGF(sgf02) // SGF string "iu"
-	fmt.Println("pnt04: ", pnt04)
-
-}
-*/
+//
+// // *** DO NOT INCLUDE WITH PULL REQUEST OR OTHER REVIEWS !!! ***
+// // *** FOR TESTING THIS BUILD VERSION ONLY !!! ***
+// func main() {
+// 	fmt.Println()
+// 	fmt.Println("*** Point Build v01: ")
+//
+// 	for pt, sgf := range pointToSgfMap {
+// 		fmt.Printf("pt: %v, sgf: %q\n", pt, sgf)
+// 	}
+//
+// 	for sgf, pt := range sgfToPointRef {
+// 		fmt.Printf("sgf: %q, pt: %v\n", sgf, pt)
+// 	}
+//
+// 	TestPointSGFBuild()
+//
+// }
+//
+// func TestPointSGFBuild() {
+// 	fmt.Println()
+// 	fmt.Println("TestPointSGFBuild() ")
+//
+// 	// Sample test run 01
+// 	fmt.Println()
+// 	fmt.Println("Sample test run 01: ")
+// 	// 1.
+// 	pnt01 := New(36, 51) // SGF string "iu"
+// 	fmt.Println("pnt01: ", pnt01)
+// 	// 2.
+// 	sgf01, err01 := pnt01.ToSGF()
+// 	fmt.Printf("sgf01: %v - err01: %v\n", sgf01, err01)
+// 	// 3.
+// 	pnt02, err02 := NewFromSGF(sgf01) // SGF string "iu"
+// 	fmt.Printf("pnt02: %v - err02: %v\n", pnt02, err02)
+// 	// fmt.Println("pnt02: ", pnt02)
+//
+// 	// Sample test run 02
+// 	fmt.Println()
+// 	fmt.Println("Sample test run 02: ")
+// 	// 1.
+// 	pnt03 := New(36, 51) // SGF string "iu"
+// 	fmt.Println("pnt03: ", pnt03)
+// 	// 2.
+// 	sgf02, err03 := pnt03.ToSGF()
+// 	fmt.Printf("sgf02: %v - err03: %v\n", sgf02, err03)
+// 	// fmt.Println("sgf02: ", sgf02)
+// 	// 3.
+// 	pnt04, err04 := NewFromSGF(sgf02) // SGF string "iu"
+// 	fmt.Printf("pnt04: %v - err04: %v\n", pnt04, err04)
+// 	// fmt.Println("pnt04: ", pnt04)
+//
+// }
