@@ -25,8 +25,7 @@ var pointToSgfMap = map[int64]rune{
 }
 
 // sgfToPointRef is an anonymous function that runs and inverts the
-// pointToSgfMap reference to create the reverse SGF to Point
-// translation reference
+// pointToSgfMap to create the reverse translation reference
 var sgfToPointRef = func(mapIn map[int64]rune) map[rune]int64 {
 	mapElem := make(map[rune]int64)
 	for key, val := range mapIn {
@@ -49,8 +48,8 @@ func (pt *Point) X() int64 { return pt.x }
 // Y returns the y-value.
 func (pt *Point) Y() int64 { return pt.y }
 
-// ToSGF converts a pointer-type (immutable) *Point
-// to an SGF Point (two letter string).
+// ToSGF converts a pointer-type (immutable) *Point to an SGF Point (
+// two letter string).
 // The returned value is 0-indexed.
 func (pt *Point) ToSGF() (string, error) {
 	var sgfOut string
@@ -69,8 +68,9 @@ func (pt *Point) ToSGF() (string, error) {
 	return sgfOut, err01
 }
 
-// NewFromSGF converts an SGF point (two letter string)
-// to a pointer-type (immutable) *Point.
+// NewFromSGF converts an SGF point (
+// two letter string) to a pointer-type (immutable) *Point (
+// (struct with two rune/char values).
 func NewFromSGF(sgfPt string) (*Point, error) {
 	var intX int64
 	var intY int64
