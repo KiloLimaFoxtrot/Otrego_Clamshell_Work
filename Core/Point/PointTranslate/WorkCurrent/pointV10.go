@@ -10,9 +10,9 @@ package main
 // 	y int64
 // }
 //
-// // pointToSgfMap is a translation reference between int64 Point
+// // pointToSgfRef is a translation reference between int64 Point
 // // and string SGF-Point (rune) values
-// var pointToSgfMap = map[int64]rune{
+// var pointToSgfRef = map[int64]rune{
 // 	0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g',
 // 	7: 'h', 8: 'i', 9: 'j', 10: 'k', 11: 'l', 12: 'm', 13: 'n',
 // 	14: 'o', 15: 'p', 16: 'q', 17: 'r', 18: 's', 19: 't', 20: 'u',
@@ -56,8 +56,8 @@ package main
 // func (pt *Point) ToSGF() string {
 // 	sgfOut := ""
 // 	if (pt.X() <= 51) && (pt.Y() <= 51) {
-// 		sgfX := string(pointToSgfMap[pt.X()])
-// 		sgfY := string(pointToSgfMap[pt.Y()])
+// 		sgfX := string(pointToSgfRef[pt.X()])
+// 		sgfY := string(pointToSgfRef[pt.Y()])
 // 		sgfOut = sgfX + sgfY
 // 	} else {
 // 		sgfOut = "--"
@@ -87,7 +87,7 @@ func main() {
 	fmt.Println()
 	fmt.Println("*** Point Build v01: ")
 
-	for pt, sgf := range pointToSgfMap {
+	for pt, sgf := range pointToSgfRef {
 		fmt.Printf("pt: %v, sgf: %q\n", pt, sgf)
 	}
 

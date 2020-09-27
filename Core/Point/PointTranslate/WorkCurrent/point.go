@@ -11,9 +11,9 @@ type Point struct {
 	y int64
 }
 
-// pointToSgfMap is a translation reference between int64 Point
+// pointToSgfRef is a translation reference between int64 Point
 // and string SGF-Point (rune) values
-var pointToSgfMap = map[int64]rune{
+var pointToSgfRef = map[int64]rune{
 	0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g',
 	7: 'h', 8: 'i', 9: 'j', 10: 'k', 11: 'l', 12: 'm', 13: 'n',
 	14: 'o', 15: 'p', 16: 'q', 17: 'r', 18: 's', 19: 't', 20: 'u',
@@ -25,14 +25,14 @@ var pointToSgfMap = map[int64]rune{
 }
 
 // sgfToPointRef is an anonymous function that runs and inverts the
-// pointToSgfMap to create the reverse translation reference
-var sgfToPointRef = func(mapIn map[int64]rune) map[rune]int64 {
-	mapElem := make(map[rune]int64)
-	for key, val := range mapIn {
-		mapElem[val] = key
+// pointToSgfRef to create the reverse translation reference
+var sgfToPointRef = func(in map[int64]rune) map[rune]int64 {
+	elem := make(map[rune]int64)
+	for key, val := range in {
+		elem[val] = key
 	}
-	return mapElem
-}(pointToSgfMap)
+	return elem
+}(pointToSgfRef)
 
 // New creates a new immutable Point.
 func New(x, y int64) *Point {
@@ -55,8 +55,8 @@ func (pt *Point) ToSGF() (string, error) {
 	var sgfOut string
 	var err01 = fmt.Errorf("")
 	if (0 <= pt.X()) && (pt.X() <= 51) && (0 <= pt.Y()) && (pt.Y() <= 51) {
-		sgfX := string(pointToSgfMap[pt.X()])
-		sgfY := string(pointToSgfMap[pt.Y()])
+		sgfX := string(pointToSgfRef[pt.X()])
+		sgfY := string(pointToSgfRef[pt.Y()])
 		sgfOut = sgfX + sgfY
 		err01 = nil
 	} else {
@@ -66,6 +66,13 @@ func (pt *Point) ToSGF() (string, error) {
 			"and less than or equal to 51. ")
 	}
 	return sgfOut, err01
+}
+
+// The below function and related elements were contributed by an
+// individual from Italy
+// String() method to represent and print a Point, useful for debugging and test purposes
+func (pt Point) String() string {
+	return fmt.Sprintf("{%d,%d}", pt.x, pt.y)
 }
 
 // NewFromSGF converts an SGF point (
@@ -95,7 +102,7 @@ func main() {
 	fmt.Println()
 	fmt.Println("*** Point Build v01: ")
 
-	for pt, sgf := range pointToSgfMap {
+	for pt, sgf := range pointToSgfRef {
 		fmt.Printf("pt: %v, sgf: %q\n", pt, sgf)
 	}
 
