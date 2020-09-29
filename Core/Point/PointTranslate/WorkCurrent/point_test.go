@@ -31,9 +31,10 @@ func TestPointToString(t *testing.T) {
 func TestPointToSGFTranslate(t *testing.T) {
 	// First test translation from integer-point to SGF-string-point
 	testToSGFCases := []struct {
-		desc string
-		in   *Point
-		want string
+		desc         string
+		in           *Point
+		want         string
+		expErrSubstr string
 	}{
 		{
 			desc: "Point => SGF",
@@ -85,6 +86,7 @@ func TestSGFToPointTranslate(t *testing.T) {
 		desc string
 		in   string
 		want *Point
+		expErrSubstr string
 	}{
 		{
 			desc: "SGF => Point",
