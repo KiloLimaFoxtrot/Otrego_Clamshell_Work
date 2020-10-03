@@ -1,5 +1,7 @@
 package main
 
+// This version submitted with Pull Request #106
+
 import (
 	"fmt"
 	"testing"
@@ -17,8 +19,8 @@ func TestCreate(t *testing.T) {
 	}
 }
 
-// The below function and related elements were contributed by an
-// individual from Italy
+// The below function and related elements were contributed by
+// un nuovo amico GitHub dall'Italia, di nome ilmanzo
 func TestPointToString(t *testing.T) {
 	result := fmt.Sprintf("%v", New(2, 3))
 	const expected = "{2,3}"
@@ -60,7 +62,7 @@ func TestPointToSGFTranslate(t *testing.T) {
 		// {
 		// 	desc:          "Error Point => SGF",
 		// 	in:            New(40, 52),
-		// 	wantErrSubstr: "Point Y value out of range",
+		// 	wantErrSubstr: "Point Y value > 51, out of range",
 		// },
 	}
 
@@ -120,5 +122,4 @@ func TestSGFToPointTranslate(t *testing.T) {
 			}
 		})
 	}
-
 }
