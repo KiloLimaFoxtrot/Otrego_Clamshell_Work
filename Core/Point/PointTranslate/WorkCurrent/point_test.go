@@ -31,10 +31,10 @@ func TestPointToString(t *testing.T) {
 func TestPointToSGFTranslate(t *testing.T) {
 	// First test translation from integer-point to SGF-string-point
 	testToSGFCases := []struct {
-		desc         string
-		in           *Point
-		want         string
-		expErrSubstr string
+		desc          string
+		in            *Point
+		want          string
+		wantErrSubstr string
 	}{
 		{
 			desc: "Point => SGF",
@@ -56,6 +56,12 @@ func TestPointToSGFTranslate(t *testing.T) {
 			in:   New(40, 51),
 			want: "OZ",
 		},
+		// // Error Cases
+		// {
+		// 	desc:          "Error Point => SGF",
+		// 	in:            New(40, 52),
+		// 	wantErrSubstr: "Point Y value out of range",
+		// },
 	}
 
 	for _, tc := range testToSGFCases {
@@ -71,10 +77,10 @@ func TestPointToSGFTranslate(t *testing.T) {
 
 func TestSGFToPointTranslate(t *testing.T) {
 	testToPointCases := []struct {
-		desc         string
-		in           string
-		want         *Point
-		expErrSubstr string
+		desc          string
+		in            string
+		want          *Point
+		wantErrSubstr string
 	}{
 		{
 			desc: "SGF => Point",
