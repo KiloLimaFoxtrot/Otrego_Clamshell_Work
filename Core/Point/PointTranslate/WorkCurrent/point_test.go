@@ -31,41 +31,28 @@ func TestPointToString(t *testing.T) {
 func TestPointToSGFTranslate(t *testing.T) {
 	// First test translation from integer-point to SGF-string-point
 	testToSGFCases := []struct {
-		desc         string
-		in           *Point
-		want         string
-		expErrSubstr string
+		desc string
+		in   *Point
+		want string
 	}{
 		{
 			desc: "Point => SGF",
-			in: &Point{
-				x: 8,
-				y: 16,
-			},
+			in:   New(8, 16),
 			want: "iq",
 		},
 		{
 			desc: "Point => SGF",
-			in: &Point{
-				x: 12,
-				y: 5,
-			},
+			in:   New(12, 5),
 			want: "mf",
 		},
 		{
 			desc: "Point => SGF",
-			in: &Point{
-				x: 33,
-				y: 8,
-			},
+			in:   New(33, 8),
 			want: "Hi",
 		},
 		{
 			desc: "Point => SGF",
-			in: &Point{
-				x: 40,
-				y: 51,
-			},
+			in:   New(40, 51),
 			want: "OZ",
 		},
 	}
@@ -83,42 +70,29 @@ func TestPointToSGFTranslate(t *testing.T) {
 
 func TestSGFToPointTranslate(t *testing.T) {
 	testToPointCases := []struct {
-		desc         string
-		in           string
-		want         *Point
-		expErrSubstr string
+		desc string
+		in   string
+		want *Point
 	}{
 		{
 			desc: "SGF => Point",
 			in:   "iq",
-			want: &Point{
-				x: 8,
-				y: 16,
-			},
+			want: New(8, 16),
 		},
 		{
 			desc: "SGF => Point",
 			in:   "mf",
-			want: &Point{
-				x: 12,
-				y: 5,
-			},
+			want: New(12, 5),
 		},
 		{
 			desc: "SGF => Point",
 			in:   "Hi",
-			want: &Point{
-				x: 33,
-				y: 8,
-			},
+			want: New(33, 8),
 		},
 		{
 			desc: "SGF => Point",
 			in:   "OZ",
-			want: &Point{
-				x: 40,
-				y: 51,
-			},
+			want: New(40, 51),
 		},
 	}
 
