@@ -83,9 +83,9 @@ func TestPointToSGFTranslate(t *testing.T) {
 
 func TestSGFToPointTranslate(t *testing.T) {
 	testToPointCases := []struct {
-		desc string
-		in   string
-		want *Point
+		desc         string
+		in           string
+		want         *Point
 		expErrSubstr string
 	}{
 		{
