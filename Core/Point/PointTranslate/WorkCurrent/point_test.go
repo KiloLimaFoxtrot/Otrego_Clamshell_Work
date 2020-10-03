@@ -31,9 +31,10 @@ func TestPointToString(t *testing.T) {
 func TestPointToSGFTranslate(t *testing.T) {
 	// First test translation from integer-point to SGF-string-point
 	testToSGFCases := []struct {
-		desc string
-		in   *Point
-		want string
+		desc         string
+		in           *Point
+		want         string
+		expErrSubstr string
 	}{
 		{
 			desc: "Point => SGF",
@@ -59,10 +60,10 @@ func TestPointToSGFTranslate(t *testing.T) {
 
 	for _, tc := range testToSGFCases {
 		t.Run(tc.desc, func(t *testing.T) {
-			toSGFOut, _ := New(tc.in.x, tc.in.y).ToSGF()
-			if toSGFOut != tc.want {
+			sgfOut, _ := New(tc.in.x, tc.in.y).ToSGF()
+			if sgfOut != tc.want {
 				t.Errorf("%q.ToSGF() = %q, but wanted %q", tc.in,
-					toSGFOut, tc.want)
+					sgfOut, tc.want)
 			}
 		})
 	}
@@ -70,9 +71,10 @@ func TestPointToSGFTranslate(t *testing.T) {
 
 func TestSGFToPointTranslate(t *testing.T) {
 	testToPointCases := []struct {
-		desc string
-		in   string
-		want *Point
+		desc         string
+		in           string
+		want         *Point
+		expErrSubstr string
 	}{
 		{
 			desc: "SGF => Point",
@@ -98,17 +100,17 @@ func TestSGFToPointTranslate(t *testing.T) {
 
 	for _, tc := range testToPointCases {
 		t.Run(tc.desc, func(t *testing.T) {
-			toPointOut, _ := NewFromSGF(tc.in)
+			pntOut, _ := NewFromSGF(tc.in)
 			// Utilizing the point.go *Point type X Y getters below
-			pointX := toPointOut.X()
-			pointY := toPointOut.Y()
-			if pointX != tc.want.x {
-				t.Errorf("%q.toPointOut.x = %q, but wanted %q", tc.in,
-					pointX, tc.want.x)
+			x := pntOut.X()
+			y := pntOut.Y()
+			if x != tc.want.x {
+				t.Errorf("%q.pntOut.x = %q, but wanted %q", tc.in,
+					x, tc.want.x)
 			}
-			if pointY != tc.want.y {
-				t.Errorf("%q.toPointOut.y = %q, but wanted %q", tc.in,
-					pointY, tc.want.y)
+			if y != tc.want.y {
+				t.Errorf("%q.pntOut.y = %q, but wanted %q", tc.in,
+					y, tc.want.y)
 			}
 		})
 	}
