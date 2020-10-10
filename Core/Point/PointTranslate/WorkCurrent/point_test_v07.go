@@ -36,7 +36,7 @@ package main
 // 		desc          string
 // 		in            *Point
 // 		want          string
-// 		wantErrSubstr string
+// 		expErrSubstr string
 // 	}{
 // 		{
 // 			desc: "Point => SGF",
@@ -62,7 +62,7 @@ package main
 // 		// {
 // 		// 	desc:          "Error Point => SGF",
 // 		// 	in:            New(40, 52),
-// 		// 	wantErrSubstr: "Point Y value > 51, out of range",
+// 		// 	expErrSubstr: "Point Y value > 51, out of range",
 // 		// },
 // 	}
 //
@@ -82,7 +82,7 @@ package main
 // 		desc          string
 // 		in            string
 // 		want          *Point
-// 		wantErrSubstr string
+// 		expErrSubstr string
 // 	}{
 // 		{
 // 			desc: "SGF => Point",
