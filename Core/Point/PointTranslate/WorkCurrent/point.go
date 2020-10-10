@@ -1,7 +1,5 @@
 package main
 
-// This version submitted with Pull Request #106
-
 import (
 	"fmt"
 )
