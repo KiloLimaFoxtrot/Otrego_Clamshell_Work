@@ -57,13 +57,14 @@ func TestPointToSGFTranslate(t *testing.T) {
 			want: "OZ",
 		},
 		// // Error Cases
-		// {
-		// 	desc:          "Error Point => SGF",
-		// 	in:            New(40, 52),
-		// 	wantErrSubstr: "Point Y value > 51, out of range",
-		// },
+		{
+			desc:          "Error Point => SGF",
+			in:            New(40, 52),
+			wantErrSubstr: "Point Y value > 51, out of range",
+		},
 	}
 
+	// Will modify this to work like the parser test testCass
 	for _, tc := range testToSGFCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			sgfOut, _ := New(tc.in.x, tc.in.y).ToSGF()
