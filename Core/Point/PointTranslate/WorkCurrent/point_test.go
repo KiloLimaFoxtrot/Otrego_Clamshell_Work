@@ -81,7 +81,6 @@ func TestPointToSGFTranslate(t *testing.T) {
 		},
 	}
 
-	// Test cases
 	for _, tc := range testToSGFCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			sgfOut, err := New(tc.in.x, tc.in.y).ToSGF()
@@ -144,7 +143,7 @@ func TestSGFToPointTranslate(t *testing.T) {
 			in:           "Q",
 			expErrSubstr: "SGF X or Y string value missing",
 		},
-		// Empty string
+		// Long string
 		{
 			desc:         "Error: SGF => Point long string",
 			in:           "xyZ",
@@ -183,22 +182,4 @@ func TestSGFToPointTranslate(t *testing.T) {
 			}
 		})
 	}
-
-	// original
-	// for _, tc := range testToPointCases {
-	// 	t.Run(tc.desc, func(t *testing.T) {
-	// 		pntOut, _ := NewFromSGF(tc.in)
-	// 		// Utilizing the point.go *Point type X Y getters below
-	// 		x := pntOut.X()
-	// 		y := pntOut.Y()
-	// 		if x != tc.want.x {
-	// 			t.Errorf("%q.pntOut.x = %q, but wanted %q", tc.in,
-	// 				x, tc.want.x)
-	// 		}
-	// 		if y != tc.want.y {
-	// 			t.Errorf("%q.pntOut.y = %q, but wanted %q", tc.in,
-	// 				y, tc.want.y)
-	// 		}
-	// 	})
-	// }
 }
