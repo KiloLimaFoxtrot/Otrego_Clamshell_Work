@@ -67,7 +67,7 @@ func (pt *Point) ToSGF() (string, error) {
 }
 
 // String() method receives a pointer argument of type Point,
-// and functions to represent and print a Point;
+// and performs to represent and print a Point;
 // useful for debugging and test purposes - ilmanzo contributing
 func (pt Point) String() string {
 	return fmt.Sprintf("{%d,%d}", pt.x, pt.y)
