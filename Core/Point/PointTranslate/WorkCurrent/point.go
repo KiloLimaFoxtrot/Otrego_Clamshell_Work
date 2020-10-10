@@ -62,9 +62,6 @@ func (pt *Point) ToSGF() (string, error) {
 
 }
 
-// The below function and related elements were contributed by
-// un nuovo amico GitHub dall'Italia, di nome ilmanzo
-
 // String() method to represent and print a Point,
 // useful for debugging and test purposes - ilmanzo contributing
 func (pt Point) String() string {
