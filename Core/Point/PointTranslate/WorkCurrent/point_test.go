@@ -36,26 +36,6 @@ func TestPointToSGFTranslate(t *testing.T) {
 		want         string
 		expErrSubstr string
 	}{
-		{
-			desc: "Point => SGF",
-			in:   New(8, 16),
-			want: "iq",
-		},
-		{
-			desc: "Point => SGF",
-			in:   New(12, 5),
-			want: "mf",
-		},
-		{
-			desc: "Point => SGF",
-			in:   New(33, 8),
-			want: "Hi",
-		},
-		{
-			desc: "Point => SGF",
-			in:   New(40, 51),
-			want: "OZ",
-		},
 		// Error Cases:
 		// Negative X Y values
 		{
@@ -79,12 +59,34 @@ func TestPointToSGFTranslate(t *testing.T) {
 			in:           New(33, 53),
 			expErrSubstr: "Point Y value > 51, out of range",
 		},
+		{
+			desc: "Point => SGF",
+			in:   New(8, 16),
+			want: "iq",
+		},
+		{
+			desc: "Point => SGF",
+			in:   New(12, 5),
+			want: "mf",
+		},
+		{
+			desc: "Point => SGF",
+			in:   New(33, 8),
+			want: "Hi",
+		},
+		{
+			desc: "Point => SGF",
+			in:   New(40, 51),
+			want: "OZ",
+		},
+
 	}
 
 	for _, tc := range testToSGFCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			sgfOut, err := New(tc.in.x, tc.in.y).ToSGF()
 			cerr := errcheck.CheckCases(err, tc.expErrSubstr)
+
 			if sgfOut != tc.want {
 				t.Errorf("%q.ToSGF() = %q, but wanted %q", tc.in,
 					sgfOut, tc.want)
@@ -110,6 +112,25 @@ func TestSGFToPointTranslate(t *testing.T) {
 		want         *Point
 		expErrSubstr string
 	}{
+		// Error Cases:
+		// Empty string
+		{
+			desc:         "Error: SGF => Point empty string",
+			in:           "",
+			expErrSubstr: "Error: SGF X Y string values empty",
+		},
+		// Short string
+		{
+			desc:         "Error: SGF => Point short string",
+			in:           "Q",
+			expErrSubstr: "SGF X or Y string value missing",
+		},
+		// Long string
+		{
+			desc:         "Error: SGF => Point long string",
+			in:           "xyZ",
+			expErrSubstr: "SGF X Y string values empty",
+		},
 		{
 			desc: "SGF => Point",
 			in:   "iq",
@@ -130,44 +151,71 @@ func TestSGFToPointTranslate(t *testing.T) {
 			in:   "OZ",
 			want: New(40, 51),
 		},
-		// Error Cases:
-		// Empty string
-		{
-			desc:         "Error: SGF => Point empty string",
-			in:           "",
-			expErrSubstr: "Error: SGF X Y string values empty",
-		},
-		// Short string
-		{
-			desc:         "Error: SGF => Point short string",
-			in:           "Q",
-			expErrSubstr: "SGF X or Y string value missing",
-		},
-		// Long string
-		{
-			desc:         "Error: SGF => Point long string",
-			in:           "xyZ",
-			expErrSubstr: "SGF X Y string values empty",
-		},
+
 	}
+
+	// for _, tc := range testToPointCases {
+	// 	t.Run(tc.desc, func(t *testing.T) {
+	// 		pntOut, err := NewFromSGF(tc.in)
+	// 		cerr := errcheck.CheckCases(err, tc.expErrSubstr)
+	// 		// pntX := pntOut.X()
+	// 		// pntY := pntOut.Y()
+	// 		// wntX := tc.want.X()
+	// 		// wntY := tc.want.Y()
+	// 		pntX := pntOut.x
+	// 		pntY := pntOut.y
+	// 		wntX := tc.want.x
+	// 		wntY := tc.want.y
+	// 		// Utilizing the point.go *Point type X Y getters below
+	// 		// if pntX != wntX || pntY != wntY {
+	// 		if pntOut != nil {
+	// 			// pntX := pntOut.X()
+	// 			// pntY := pntOut.Y()
+	// 			// wntX := tc.want.X()
+	// 			// wntY := tc.want.Y()
+	// 			if pntX != wntX {
+	// 				t.Errorf("%q.pntOut.pntX = %q, but wanted %q",
+	// 					tc.in, pntX, wntX)
+	// 			}
+	// 			if pntY != wntY {
+	// 				t.Errorf("%q.pntOut.pntY = %q, but wanted %q",
+	// 					tc.in,
+	// 					pntY, wntY)
+	// 			}
+	// 			if cerr != nil {
+	// 				t.Fatal(cerr)
+	// 			}
+	// 			if err != nil {
+	// 				return
+	// 			}
+	// 		}
+	// 		if pntOut == nil {
+	// 			t.Fatal("unexpected nil point integer value")
+	// 		}
+	// 		// }
+	// 	})
+	// }
 
 	for _, tc := range testToPointCases {
 		t.Run(tc.desc, func(t *testing.T) {
 			pntOut, err := NewFromSGF(tc.in)
 			cerr := errcheck.CheckCases(err, tc.expErrSubstr)
+			pntX := pntOut.X()
+			pntY := pntOut.Y()
+			wntX := tc.want.X()
+			wntY := tc.want.Y()
+
 			// Utilizing the point.go *Point type X Y getters below
-			if pntOut != tc.want {
+			if (pntX != wntX) || (pntY != wntY) {
 				if pntOut != nil {
-					x := pntOut.X()
-					y := pntOut.Y()
-					if x != tc.want.x {
-						t.Errorf("%q.pntOut.x = %q, but wanted %q",
-							tc.in, x, tc.want.x)
+					if pntX != wntX {
+						t.Errorf("%q.pntOut.pntX = %q, but wanted %q",
+							tc.in, pntX, wntX)
 					}
-					if y != tc.want.y {
-						t.Errorf("%q.pntOut.y = %q, but wanted %q",
+					if pntY != wntY {
+						t.Errorf("%q.pntOut.pntY = %q, but wanted %q",
 							tc.in,
-							y, tc.want.y)
+							pntY, wntY)
 					}
 					if cerr != nil {
 						t.Fatal(cerr)
@@ -183,3 +231,5 @@ func TestSGFToPointTranslate(t *testing.T) {
 		})
 	}
 }
+
+// Work
